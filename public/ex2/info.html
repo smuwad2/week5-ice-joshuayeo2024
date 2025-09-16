@@ -23,20 +23,7 @@
 
         </div>
         <script>
-            async function getData() {
-                const limit = document.getElementById("limit").value;
-                const type = document.getElementById("type").value;
-                const url = "/data";
-                try {
-                    const responsesData = await axios.get(url, {
-                    "params" : {
-                        "limit" : limit,
-                        "type" : type
-                    }
-                })
-                createTable(responsesData.data);
-
-                function createTable(dataObj){
+            function createTable(dataObj){
                     const resultDiv = document.getElementById("result");
                     //clear previous content
                     while (resultDiv.firstChild){
@@ -76,6 +63,20 @@
                     tableElem.appendChild(tBodyElem);
                     resultDiv.appendChild(tableElem);
                 }
+            async function getData() {
+                const limit = document.getElementById("limit").value;
+                const type = document.getElementById("type").value;
+                const url = "/data";
+                try {
+                    const responsesData = await axios.get(url, {
+                    "params" : {
+                        "limit" : limit,
+                        "type" : type
+                    }
+                })
+                createTable(responsesData.data);
+
+                
                 
                 } catch (error){
                     console.log(error);
